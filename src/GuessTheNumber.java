@@ -26,18 +26,19 @@ public class GuessTheNumber {
 		int randomNumber = ThreadLocalRandom.current().nextInt(1, maxNumber + 1);
 		int guess = -1;
 		System.out.println(String.format("Guess the number, from 1 to %d", maxNumber));
-		Scanner scanner = new Scanner(System.in);
 		
-		do {
-			guess = scanner.nextInt();
-			if (guess > randomNumber) {
-				System.out.println("The number is lower");
-			} else {
-				if (guess < randomNumber) {
-					System.out.println("The number is higher");
+		try (Scanner scanner = new Scanner(System.in);) {
+			do {
+				guess = scanner.nextInt();
+				if (guess > randomNumber) {
+					System.out.println("The number is lower");
+				} else {
+					if (guess < randomNumber) {
+						System.out.println("The number is higher");
+					}
 				}
-			}
-		} while (guess != randomNumber);
+			} while (guess != randomNumber);
+		}
 		
 		System.out.println("You guessed the number!");
 	}
